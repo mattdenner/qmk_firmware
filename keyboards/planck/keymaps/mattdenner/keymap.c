@@ -39,10 +39,14 @@ enum planck_keycodes {
 
 #define MOVEMENT MO(_MOVEMENT)
 
-#define DESKTOP_LEFT  LCTL(KC_LEFT)
-#define DESKTOP_RIGHT LCTL(KC_RIGHT)
-#define DESKTOP_FULL  LSFT(LCTL(RALT(KC_F)))
-#define DESKTOP_TALL  LSFT(LCTL(RALT(KC_T)))
+#define DESKTOP_LEFT       LCTL(KC_LEFT)
+#define DESKTOP_RIGHT      LCTL(KC_RIGHT)
+#define DESKTOP_FULL       LSFT(LCTL(RALT(KC_F)))
+#define DESKTOP_TALL       LSFT(LCTL(RALT(KC_T)))
+#define WINDOW_FOCUS_LEFT  LCTL(RALT(KC_J))
+#define WINDOW_FOCUS_RIGHT LCTL(RALT(KC_K))
+#define WINDOW_MOVE_LEFT   LSFT(LCTL(RALT(KC_J)))
+#define WINDOW_MOVE_RIGHT  LSFT(LCTL(RALT(KC_K)))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -102,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Movement
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      | TALL |      |      |      |      |      |      |
+ * |      |      |      |      |      | TALL |MOVEL |FOCUSL|FOCUSR|MOVER |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      | FULL |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -112,10 +116,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    _______, _______, _______, _______, _______,      DESKTOP_TALL, _______,    _______,    _______,       _______,     _______,    _______,
-    _______, _______, _______, _______, DESKTOP_FULL, _______,      _______,    _______,    _______,       _______,     _______,    _______,
-    _______, _______, _______, _______, _______,      KC_MS_BTN1,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP,      KC_MS_RIGHT, KC_MS_BTN2, _______,
-    _______, _______, _______, _______, _______,      _______,      _______,    _______,    DESKTOP_LEFT,  _______,     _______,    DESKTOP_RIGHT
+    _______, _______, _______, _______, _______,      DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, _______,    _______,
+    _______, _______, _______, _______, DESKTOP_FULL, _______,      _______,          _______,           _______,            _______,           _______,    _______,
+    _______, _______, _______, _______, _______,      KC_MS_BTN1,   KC_MS_LEFT,       KC_MS_DOWN,        KC_MS_UP,           KC_MS_RIGHT,       KC_MS_BTN2, _______,
+    _______, _______, _______, _______, _______,      _______,      _______,          _______,           DESKTOP_LEFT,       _______,           _______,    DESKTOP_RIGHT
 ),
 
 /* Adjust (Lower + Raise)
