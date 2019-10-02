@@ -143,10 +143,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+#define ___         {0x00,0x00,0x00}
+#define RGB_WINDOW  {0x00,0x00,0x88}
+#define RGB_MOUSE   {0x88,0x88,0x00}
+
+const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
+	[_QWERTY] = {
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___,    ___,   ___, ___, ___, ___, ___ 
+	},
+	[_LOWER] = {
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___,    ___,   ___, ___, ___, ___, ___ 
+	},
+	[_RAISE] = {
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___,    ___,   ___, ___, ___, ___, ___ 
+	},
+	[_ADJUST] = {
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___,    ___,   ___, ___, ___, ___, ___ 
+	},
+	[_MOVEMENT] = {
+		___, ___, ___, ___, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___,       ___,
+		___, ___, ___, ___, RGB_WINDOW, ___,        ___,        ___,        ___,        ___,        ___,       ___,
+		___, ___, ___, ___, ___,        RGB_MOUSE,  RGB_MOUSE,  RGB_MOUSE,  RGB_MOUSE,  RGB_MOUSE,  RGB_MOUSE, ___,
+		___, ___, ___, ___, ___,    ___,                        ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
+	},
+};
+
 // Called during the firmware startup: hardware initialized, but features may not be yet.
 void matrix_init_user() {
 	rgblight_mode(1);
-	rgblight_sethsv(0, 0, 0);
+	rgblight_sethsv(0,0,0);
+}
+
+void rgb_matrix_indicators_user(void) {
+#ifdef RGB_MATRIX_ENABLE
+	int active_layer = biton32(layer_state);
+	if ((active_layer < _QWERTY) || (active_layer > _MOVEMENT)) {
+		return;
+	}
+
+	for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+		const uint8_t *color = keymaps_colors[active_layer][i];
+		rgb_matrix_set_color(i, color[0], color[1], color[2]);
+	}
+#endif
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
