@@ -44,7 +44,7 @@ enum planck_keycodes {
 // Some custom keys
 #define KC_UK_HASH ALGR(KC_3)
 
-#define MOVEMENT MO(_MOVEMENT)
+#define MOVEMENT TG(_MOVEMENT)
 
 #define DESKTOP_LEFT       LCTL(KC_LEFT)
 #define DESKTOP_RIGHT      LCTL(KC_RIGHT)
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,        DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
     KC_NO,   KC_NO,   TMUX_SPLIT,   KC_NO,   DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
     KC_NO,   KC_NO,   KC_NO,        KC_NO,   TMUX_VSPLIT,  KC_MS_BTN1,   KC_MS_LEFT,       KC_MS_DOWN,        KC_MS_UP,           KC_MS_RIGHT,       KC_MS_BTN2, KC_NO,  
-    KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
+    _______, KC_NO,   KC_NO,        KC_NO,   KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
 ),
 
 /* Adjust (Lower + Raise)
