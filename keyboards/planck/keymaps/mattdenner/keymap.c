@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MOVEMENT] = LAYOUT_planck_grid(
     KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,        DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
     KC_NO,   KC_NO,   TMUX_SPLIT,   KC_NO,   DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
-    KC_NO,   KC_NO,   KC_NO,        KC_NO,   TMUX_VSPLIT,  KC_MS_BTN1,   KC_MS_LEFT,       KC_MS_DOWN,        KC_MS_UP,           KC_MS_RIGHT,       KC_MS_BTN2, KC_NO,  
+    KC_LSFT, KC_NO,   KC_NO,        KC_NO,   TMUX_VSPLIT,  KC_MS_BTN1,   KC_MS_LEFT,       KC_MS_DOWN,        KC_MS_UP,           KC_MS_RIGHT,       KC_MS_BTN2, KC_NO,  
     _______, KC_NO,   KC_NO,        KC_NO,   KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
 ),
 
@@ -212,16 +212,18 @@ void rgb_matrix_indicators_user(void) {
 #endif
 }
 
-#define tmux_command(c) if(record->event.pressed) SEND_STRING(SS_LCTRL("a") c);
+#define TMUX_PREFIX SS_LCTRL("a")
+#define tmux_command(c)              if(record->event.pressed) SEND_STRING(TMUX_PREFIX c);
+#define tmux_command_with_shift(c,C) if(record->event.pressed) SEND_STRING( (((get_mods() & MOD_BIT(KC_LSFT)) ? (TMUX_PREFIX c) : (TMUX_PREFIX c))) );
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-		case TMUX_SPLIT:  tmux_command("-"); break;
-		case TMUX_VSPLIT: tmux_command("v"); break;
-		case TMUX_LEFT:   tmux_command("h"); break;
-		case TMUX_RIGHT:  tmux_command("l"); break;
-		case TMUX_UP:     tmux_command("k"); break;
-		case TMUX_DOWN:   tmux_command("j"); break;
+		case TMUX_SPLIT:  tmux_command("-"); layer_off(_MOVEMENT); break;
+		case TMUX_VSPLIT: tmux_command("v"); layer_off(_MOVEMENT); break;
+		case TMUX_LEFT:   tmux_command_with_shift("h","H"); break;
+		case TMUX_RIGHT:  tmux_command_with_shift("l","L"); break;
+		case TMUX_UP:     tmux_command_with_shift("k","K"); break;
+		case TMUX_DOWN:   tmux_command_with_shift("j","J"); break;
   }
 	return true;
 }
