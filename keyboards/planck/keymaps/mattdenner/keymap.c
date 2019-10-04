@@ -181,7 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define RGB_MOVE    {0x00,0x88,0x88}
 
 #define RGB_WINDOW  {0x00,0x88,0x88}
-#define RGB_MOUSE   {0x88,0x44,0x00}
+#define RGB_MOUSE   {0xFF,0x44,0x00}
 #define RGB_TMUX    {0x88,0x88,0x00}
 
 const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
