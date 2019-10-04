@@ -49,8 +49,8 @@ enum planck_keycodes {
 // Some custom keys
 #define KC_UK_HASH ALGR(KC_3)
 
-#define MOVEMENT    TG(_MOVEMENT)
-#define LAYER_MOUSE TG(_MOUSE)
+#define LAYER_MOVEMENT     TG(_MOVEMENT)
+#define LAYER_MOUSE        TG(_MOUSE)
 
 #define DESKTOP_LEFT       LCTL(KC_LEFT)
 #define DESKTOP_RIGHT      LCTL(KC_RIGHT)
@@ -75,10 +75,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_ESC,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-    KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
-    MOVEMENT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_ESC,         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+    KC_TAB,         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+    KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
+    LAYER_MOVEMENT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Lower
@@ -129,10 +129,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3, TMUX_4,       DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
-    KC_NO,    KC_NO,       TMUX_SPLIT, KC_NO,  DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
-    KC_LSFT,  KC_NO,       KC_NO,      KC_NO,  TMUX_VSPLIT,  KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO,      KC_NO,  
-    _______,  LAYER_MOUSE, KC_NO,      KC_NO,  KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
+    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3, TMUX_4,       DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
+    KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,  DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
+    KC_LSFT,        KC_NO,       KC_NO,      KC_NO,  TMUX_VSPLIT,  KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO,      KC_NO,  
+    _______,        LAYER_MOUSE, KC_NO,      KC_NO,  KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
 ),
 
 /* Mouse
