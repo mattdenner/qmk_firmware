@@ -60,6 +60,7 @@ enum planck_keycodes {
 #define DESKTOP_RIGHT      LCTL(KC_RIGHT)
 #define DESKTOP_FULL       LSFT(LCTL(RALT(KC_F)))
 #define DESKTOP_TALL       LSFT(LCTL(RALT(KC_T)))
+#define DESKTOP_CYCLE      LSFT(LCTL(RALT(KC_SPC)))
 #define WINDOW_FOCUS_LEFT  LCTL(RALT(KC_J))
 #define WINDOW_FOCUS_RIGHT LCTL(RALT(KC_K))
 #define WINDOW_MOVE_LEFT   LSFT(LCTL(RALT(KC_J)))
@@ -133,10 +134,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3,      TMUX_RENAME,  DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
-    KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,       DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
-    KC_LSFT,        KC_NO,       KC_NO,      TMUX_CREATE, TMUX_VSPLIT,  KC_NO,        KC_NO,            TMUX_MOVE,         KC_NO,              KC_NO,             KC_NO,      KC_NO,  
-    _______,        LAYER_MOUSE, KC_NO,      KC_NO,       KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
+    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3,      TMUX_RENAME,  DESKTOP_TALL,  WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
+    KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,       DESKTOP_FULL, KC_NO,         TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
+    KC_LSFT,        KC_NO,       KC_NO,      TMUX_CREATE, TMUX_VSPLIT,  KC_NO,         KC_NO,            TMUX_MOVE,         KC_NO,              KC_NO,             KC_NO,      KC_NO,  
+    _______,        LAYER_MOUSE, KC_NO,      KC_NO,       KC_NO,        DESKTOP_CYCLE, DESKTOP_CYCLE,    KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
 ),
 
 /* Mouse
@@ -221,7 +222,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 		RGB_MOVE, RGB_TMUX,  RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___,       ___,
 		___,      ___,       RGB_TMUX, ___,      RGB_WINDOW, ___,        RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   ___,       ___,
 		___,      ___,       ___,      RGB_TMUX, RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
-		RGB_MOVE, RGB_MOUSE, ___,      ___,      ___,        __SPACE__,              ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
+		RGB_MOVE, RGB_MOUSE, ___,      ___,      ___,        RGB_WINDOW, ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
 	},
 
 	[_MOUSE] = {
