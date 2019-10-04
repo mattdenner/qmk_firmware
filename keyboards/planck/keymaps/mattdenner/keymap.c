@@ -31,6 +31,7 @@ enum planck_layers {
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
 
+	TMUX_CREATE,
 	TMUX_SPLIT,
 	TMUX_VSPLIT,
 	TMUX_MOVE,
@@ -132,10 +133,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3, TMUX_RENAME,  DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
-    KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,  DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
-    KC_LSFT,        KC_NO,       KC_NO,      KC_NO,  TMUX_VSPLIT,  KC_NO,        KC_NO,            TMUX_MOVE,         KC_NO,              KC_NO,             KC_NO,      KC_NO,  
-    _______,        LAYER_MOUSE, KC_NO,      KC_NO,  KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
+    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3,      TMUX_RENAME,  DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
+    KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,       DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
+    KC_LSFT,        KC_NO,       KC_NO,      TMUX_CREATE, TMUX_VSPLIT,  KC_NO,        KC_NO,            TMUX_MOVE,         KC_NO,              KC_NO,             KC_NO,      KC_NO,  
+    _______,        LAYER_MOUSE, KC_NO,      KC_NO,       KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
 ),
 
 /* Mouse
@@ -219,7 +220,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	[_MOVEMENT] = {
 		RGB_MOVE, RGB_TMUX,  RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___,       ___,
 		___,      ___,       RGB_TMUX, ___,      RGB_WINDOW, ___,        RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   ___,       ___,
-		___,      ___,       ___,      ___,      RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
+		___,      ___,       ___,      RGB_TMUX, RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
 		RGB_MOVE, RGB_MOUSE, ___,      ___,      ___,        __SPACE__,              ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
 	},
 
@@ -258,6 +259,7 @@ void rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+		case TMUX_CREATE: tmux_command("c",TRUE); break;
 		case TMUX_SPLIT:  tmux_command("-",TRUE); break;
 		case TMUX_VSPLIT: tmux_command("v",TRUE); break;
 		case TMUX_1:      tmux_command("1",TRUE); break;
