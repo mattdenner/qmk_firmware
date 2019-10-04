@@ -148,8 +148,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_MOUSE] = LAYOUT_planck_grid(
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
-    KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_MS_BTN2, KC_NO,  
+    KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
     KC_NO, _______, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
 ),
 
@@ -222,8 +222,8 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 
 	[_MOUSE] = {
 		___, ___,       ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
-		___, ___,       ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
 		___, ___,       ___, ___, ___, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, ___,
+		___, ___,       ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
 		___, RGB_MOUSE, ___, ___, ___, __SPACE__,            ___,       ___,       ___,       ___,       ___ 
 	},
 };
