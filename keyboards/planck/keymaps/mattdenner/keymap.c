@@ -33,6 +33,9 @@ enum planck_keycodes {
 
 	TMUX_SPLIT,
 	TMUX_VSPLIT,
+	TMUX_MOVE,
+	TMUX_RENAME,
+
 	TMUX_LEFT,
 	TMUX_RIGHT,
 	TMUX_UP,
@@ -129,9 +132,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3, TMUX_4,       DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
+    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3, TMUX_RENAME,  DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
     KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,  DESKTOP_FULL, KC_NO,        TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
-    KC_LSFT,        KC_NO,       KC_NO,      KC_NO,  TMUX_VSPLIT,  KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO,      KC_NO,  
+    KC_LSFT,        KC_NO,       KC_NO,      KC_NO,  TMUX_VSPLIT,  KC_NO,        KC_NO,            TMUX_MOVE,         KC_NO,              KC_NO,             KC_NO,      KC_NO,  
     _______,        LAYER_MOUSE, KC_NO,      KC_NO,  KC_NO,        KC_NO,        KC_NO,            KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
 ),
 
@@ -216,7 +219,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	[_MOVEMENT] = {
 		RGB_MOVE, RGB_TMUX,  RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___,       ___,
 		___,      ___,       RGB_TMUX, ___,      RGB_WINDOW, ___,        RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   ___,       ___,
-		___,      ___,       ___,      ___,      RGB_TMUX,   ___,        ___,        ___,        ___,        ___,        ___,       ___,
+		___,      ___,       ___,      ___,      RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
 		RGB_MOVE, RGB_MOUSE, ___,      ___,      ___,        __SPACE__,              ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
 	},
 
@@ -249,21 +252,23 @@ void rgb_matrix_indicators_user(void) {
 }
 
 #define TMUX_PREFIX SS_LCTRL("a")
-#define tmux_command_and_toggle(c)   if(record->event.pressed) {SEND_STRING(TMUX_PREFIX c); layer_off(_MOVEMENT); return false;}
-#define tmux_command_with_shift(c,C) if(record->event.pressed) {SEND_STRING( (((get_mods() & MOD_BIT(KC_LSFT)) ? (TMUX_PREFIX C) : (TMUX_PREFIX c))) ); return false;}
+#define tmux_toggle(t) if(t){layer_off(_MOVEMENT);}
+#define tmux_command(c,t)   if(record->event.pressed) {SEND_STRING(TMUX_PREFIX c); tmux_toggle(t); return false;}
+#define tmux_command_with_shift(c,C,t) if(record->event.pressed) {SEND_STRING( (((get_mods() & MOD_BIT(KC_LSFT)) ? (TMUX_PREFIX C) : (TMUX_PREFIX c))) ); tmux_toggle(t); return false;}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-		case TMUX_SPLIT:  tmux_command_and_toggle("-"); break;
-		case TMUX_VSPLIT: tmux_command_and_toggle("v"); break;
-		case TMUX_1:      tmux_command_and_toggle("1"); break;
-		case TMUX_2:      tmux_command_and_toggle("2"); break;
-		case TMUX_3:      tmux_command_and_toggle("3"); break;
-		case TMUX_4:      tmux_command_and_toggle("4"); break;
-		case TMUX_LEFT:   tmux_command_with_shift("h","H"); break;
-		case TMUX_RIGHT:  tmux_command_with_shift("l","L"); break;
-		case TMUX_UP:     tmux_command_with_shift("k","K"); break;
-		case TMUX_DOWN:   tmux_command_with_shift("j","J"); break;
+		case TMUX_SPLIT:  tmux_command("-",TRUE); break;
+		case TMUX_VSPLIT: tmux_command("v",TRUE); break;
+		case TMUX_1:      tmux_command("1",TRUE); break;
+		case TMUX_2:      tmux_command("2",TRUE); break;
+		case TMUX_3:      tmux_command("3",TRUE); break;
+		case TMUX_RENAME: tmux_command_with_shift("4",":rename-window ",TRUE); break;
+		case TMUX_MOVE:   tmux_command(":move-window\n",TRUE); break;
+		case TMUX_LEFT:   tmux_command_with_shift("h","H",FALSE); break;
+		case TMUX_RIGHT:  tmux_command_with_shift("l","L",FALSE); break;
+		case TMUX_UP:     tmux_command_with_shift("k","K",FALSE); break;
+		case TMUX_DOWN:   tmux_command_with_shift("j","J",FALSE); break;
   }
 	return true;
 }
