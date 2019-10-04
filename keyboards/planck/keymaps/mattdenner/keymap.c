@@ -221,7 +221,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	[_MOVEMENT] = {
 		RGB_MOVE, RGB_TMUX,  RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___,       ___,
 		___,      ___,       RGB_TMUX, ___,      RGB_WINDOW, ___,        RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   ___,       ___,
-		___,      ___,       ___,      RGB_TMUX, RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
+		RGB_TMUX, ___,       ___,      RGB_TMUX, RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
 		RGB_MOVE, RGB_MOUSE, ___,      ___,      ___,        RGB_WINDOW, ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
 	},
 
