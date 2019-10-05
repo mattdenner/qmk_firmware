@@ -28,8 +28,8 @@ enum planck_layers {
 
   _ADJUST,
 	_MOVEMENT,
-	_WINDOWS,
 	_MOUSE,
+	_WINDOWS,
 };
 
 enum planck_keycodes {
