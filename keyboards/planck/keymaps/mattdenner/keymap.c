@@ -193,6 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define RGB_LEAST   {0xFF,0x00,0x00}
 #define RGB_MOST_S  {0x00,0xFF,0xFF}
 #define RGB_LEAST_S {0xFF,0x00,0xFF}
+#define RGB_NUMERIC {0xFF,0x44,0x00}
 
 const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	[_QWERTY] = {
@@ -203,22 +204,22 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	},
 
 	[_SYMBOLS_LEAST] = {
-		___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,
-		___,        ___,        ___,        ___,        ___,        ___,        ___,        RGB_LEAST,  ___,        RGB_LEAST,  RGB_LEAST,  ___,
-		___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        RGB_LEAST,  ___,
-		___,        ___,        ___,        ___,        RGB_LEAST,     __SPACE__,           ___,        ___,        ___,        ___,        ___ 
+		___,        ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,
+		___,        ___,         ___,         ___,         ___,         ___,         ___,         RGB_LEAST,   ___,         RGB_LEAST,   RGB_LEAST,   ___,
+		___,        ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         RGB_LEAST,   ___,
+		___,        ___,         ___,         ___,         RGB_LEAST,       __SPACE__,            ___,         ___,         ___,         ___,         ___ 
 	},
 	[_SYMBOLS_MOST] = {
-		RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   ___,
-		___,        ___,        ___,        ___,        ___,        ___,        ___,        RGB_MOST,   RGB_MOST,   RGB_MOST,   RGB_MOST,   ___,
-		RGB_MOST_S, ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        RGB_MOST,   ___,
-		___,        ___,        ___,        ___,        ___,           __SPACE__,           RGB_MOST,   ___,        ___,        ___,        ___ 
+		RGB_MOST,   RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, RGB_NUMERIC, ___,
+		___,        ___,         ___,         ___,         ___,         ___,         ___,         RGB_MOST,    RGB_MOST,    RGB_MOST,    RGB_MOST,    ___,
+		RGB_MOST_S, ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         RGB_MOST,    ___,
+		___,        ___,         ___,         ___,         ___,             __SPACE__,            RGB_MOST,    ___,         ___,         ___,         ___ 
 	},
 	[_SYMBOLS_MOST_SHIFTED] = {
-		RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, ___,
-		___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        RGB_MOST_S, RGB_MOST_S, RGB_MOST_S, ___,
-		RGB_MOST_S, ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,        ___,
-		___,        ___,        ___,        ___,        ___,           __SPACE__,           RGB_MOST,   ___,        ___,        ___,        ___ 
+		RGB_MOST_S, RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  ___,
+		___,        ___,         ___,         ___,         ___,         ___,         ___,         ___,         RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  ___,
+		RGB_MOST_S, ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,
+		___,        ___,         ___,         ___,         ___,             __SPACE__,            RGB_MOST,    ___,         ___,         ___,         ___ 
 	},
 
 	[_ADJUST] = {
