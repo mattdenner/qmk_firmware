@@ -143,7 +143,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,        KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, KC_NO,   KC_NO,      KC_NO, KC_NO,  
     _______,        LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO
 ),
-
 [_MOUSE] = LAYOUT_planck_grid(
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_MS_BTN2, KC_NO,  
@@ -151,8 +150,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO, _______, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
 ),
 [_WINDOWS] = LAYOUT_planck_grid(
-    KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
-    KC_NO, KC_NO, KC_NO,   KC_NO, DESKTOP_FULL, KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
+    KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        DESKTOP_TALL, KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
+    KC_NO, KC_NO, KC_NO,   KC_NO, DESKTOP_FULL, KC_NO,        WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
     KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
     KC_NO, KC_NO, _______, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
 ),
@@ -241,8 +240,8 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	},
 
 	[_WINDOWS] = {
-		___, ___, ___, ___, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
-		___, ___, ___, ___, RGB_WINDOW, ___,        ___,        ___,        ___,        ___,        ___, ___,
+		___, ___, ___, ___, ___,        RGB_WINDOW, ___,        ___,        ___,        ___,        ___, ___,
+		___, ___, ___, ___, RGB_WINDOW, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
 		___, ___, ___, ___, ___,        ___,        ___,        ___,        ___,        ___,        ___, ___,
 		___, ___, ___, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
 	},
