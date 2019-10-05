@@ -28,6 +28,7 @@ enum planck_layers {
 
   _ADJUST,
 	_MOVEMENT,
+	_WINDOWS,
 	_MOUSE,
 };
 
@@ -63,6 +64,7 @@ enum planck_keycodes {
 #define LAYER_SYMBOLS_MOST_SHIFTED MO(_SYMBOLS_MOST_SHIFTED)
 #define LAYER_MOVEMENT             TG(_MOVEMENT)
 #define LAYER_MOUSE                TG(_MOUSE)
+#define LAYER_WINDOWS							 TG(_WINDOWS)
 
 #define DESKTOP_LEFT       LCTL(KC_LEFT)
 #define DESKTOP_RIGHT      LCTL(KC_RIGHT)
@@ -136,28 +138,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    LAYER_MOVEMENT, TMUX_1,      TMUX_2,     TMUX_3,      TMUX_RENAME,  DESKTOP_TALL,  WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO,      KC_NO,  
-    KC_NO,          KC_NO,       TMUX_SPLIT, KC_NO,       DESKTOP_FULL, KC_NO,         TMUX_LEFT,        TMUX_DOWN,         TMUX_UP,            TMUX_RIGHT,        KC_NO,      KC_NO,  
-    KC_LSFT,        KC_NO,       KC_NO,      TMUX_CREATE, TMUX_VSPLIT,  KC_NO,         KC_NO,            TMUX_MOVE,         KC_NO,              KC_NO,             KC_NO,      KC_NO,  
-    _______,        LAYER_MOUSE, KC_NO,      KC_NO,       KC_NO,        DESKTOP_CYCLE, DESKTOP_CYCLE,    KC_NO,             DESKTOP_LEFT,       KC_NO,             KC_NO,      DESKTOP_RIGHT
+    LAYER_MOVEMENT, TMUX_1,      TMUX_2,        TMUX_3,      TMUX_RENAME,  KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO,  
+    KC_NO,          KC_NO,       TMUX_SPLIT,    KC_NO,       KC_NO,        KC_NO, TMUX_LEFT, TMUX_DOWN, TMUX_UP, TMUX_RIGHT, KC_NO, KC_NO,  
+    KC_LSFT,        KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, KC_NO,   KC_NO,      KC_NO, KC_NO,  
+    _______,        LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO
 ),
 
-/* Mouse
- * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      | TALL |MOVEL |FOCUSL|FOCUSR|MOVER |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      | FULL |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      | BTN1 | LEFT | DOWN | UP   |RIGHT | BTN2 |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |LEFTD |      |      |RIGHTD|
- * `-----------------------------------------------------------------------------------'
- */
 [_MOUSE] = LAYOUT_planck_grid(
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_MS_BTN2, KC_NO,  
     KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
     KC_NO, _______, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
+),
+[_WINDOWS] = LAYOUT_planck_grid(
+    KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        DESKTOP_TALL, WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
+    KC_NO, KC_NO, KC_NO,   KC_NO, DESKTOP_FULL, KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
+    KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
+    KC_NO, KC_NO, _______, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
 ),
 
 /* Adjust (Lower + Raise)
@@ -230,10 +227,10 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	},
 
 	[_MOVEMENT] = {
-		RGB_MOVE, RGB_TMUX,  RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___,       ___,
-		___,      ___,       RGB_TMUX, ___,      RGB_WINDOW, ___,        RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   RGB_TMUX,   ___,       ___,
-		RGB_TMUX, ___,       ___,      RGB_TMUX, RGB_TMUX,   ___,        ___,        RGB_TMUX,   ___,        ___,        ___,       ___,
-		RGB_MOVE, RGB_MOUSE, ___,      ___,      ___,        RGB_WINDOW, ___,        RGB_WINDOW, ___,        ___,       RGB_WINDOW 
+		RGB_MOVE, RGB_TMUX,  RGB_TMUX,   RGB_TMUX, RGB_TMUX, ___, ___,      ___,      ___,      ___,      ___, ___,
+		___,      ___,       RGB_TMUX,   ___,      ___,      ___, RGB_TMUX, RGB_TMUX, RGB_TMUX, RGB_TMUX, ___, ___,
+		RGB_TMUX, ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, ___,      ___,      ___, ___,
+		RGB_MOVE, RGB_MOUSE, RGB_WINDOW, ___,      ___,      __SPACE__,     ___,      ___,      ___,      ___, ___
 	},
 
 	[_MOUSE] = {
@@ -241,6 +238,13 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 		___, ___,       ___, ___, ___, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, ___,
 		___, ___,       ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
 		___, RGB_MOUSE, ___, ___, ___, __SPACE__,            ___,       ___,       ___,       ___,       ___ 
+	},
+
+	[_WINDOWS] = {
+		___, ___, ___, ___, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
+		___, ___, ___, ___, RGB_WINDOW, ___,        ___,        ___,        ___,        ___,        ___, ___,
+		___, ___, ___, ___, ___,        ___,        ___,        ___,        ___,        ___,        ___, ___,
+		___, ___, ___, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
 	},
 };
 
@@ -253,7 +257,7 @@ void matrix_init_user() {
 void rgb_matrix_indicators_user(void) {
 #ifdef RGB_MATRIX_ENABLE
 	int active_layer = biton32(layer_state);
-	if ((active_layer < _QWERTY) || (active_layer > _MOUSE)) {
+	if ((active_layer < _QWERTY) || (active_layer > _WINDOWS)) {
 		return;
 	}
 
