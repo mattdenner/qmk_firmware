@@ -21,11 +21,12 @@ extern keymap_config_t keymap_config;
 
 enum planck_layers {
   _QWERTY,
-  _LOWER,
-  _RAISE,
+	_SYMBOLS_MOST,
+	_SYMBOLS_LEAST,
   _ADJUST,
 	_MOVEMENT,
 	_MOUSE,
+
 };
 
 enum planck_keycodes {
@@ -47,14 +48,14 @@ enum planck_keycodes {
 	TMUX_4,
 };
 
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
 
 // Some custom keys
 #define KC_UK_HASH ALGR(KC_3)
 
-#define LAYER_MOVEMENT     TG(_MOVEMENT)
-#define LAYER_MOUSE        TG(_MOUSE)
+#define LAYER_SYMBOLS_LEAST MO(_SYMBOLS_LEAST)
+#define LAYER_SYMBOLS_MOST  MO(_SYMBOLS_MOST)
+#define LAYER_MOVEMENT      TG(_MOVEMENT)
+#define LAYER_MOUSE         TG(_MOUSE)
 
 #define DESKTOP_LEFT       LCTL(KC_LEFT)
 #define DESKTOP_RIGHT      LCTL(KC_RIGHT)
@@ -65,6 +66,11 @@ enum planck_keycodes {
 #define WINDOW_FOCUS_RIGHT LCTL(RALT(KC_K))
 #define WINDOW_MOVE_LEFT   LSFT(LCTL(RALT(KC_J)))
 #define WINDOW_MOVE_RIGHT  LSFT(LCTL(RALT(KC_K)))
+
+#define KC_FOR_SHIFT(normal,shifted) normal
+#define KS_3_UK_HASH								 KC_FOR_SHIFT(KC_3,    KC_UK_HASH)
+#define KS_UNDS_MINS  							 KC_FOR_SHIFT(KC_UNDS, KC_MINS)
+#define KS_TILD_GRV   							 KC_FOR_SHIFT(KC_TILD, KC_GRV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -80,46 +86,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_ESC,         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-    KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
-    LAYER_MOVEMENT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_ESC,         KC_Q,    KC_W,    KC_E,    KC_R,                KC_T,    KC_Y,    KC_U,               KC_I,    KC_O,    KC_P,    KC_BSPC,
+    KC_TAB,         KC_A,    KC_S,    KC_D,    KC_F,                KC_G,    KC_H,    KC_J,               KC_K,    KC_L,    KC_SCLN, KC_ENT,
+    KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,                KC_B,    KC_N,    KC_M,               KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
+    LAYER_MOVEMENT, KC_LCTL, KC_LALT, KC_LGUI, LAYER_SYMBOLS_LEAST, KC_SPC,  KC_SPC,  LAYER_SYMBOLS_MOST, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
-/* Lower
+/* Symbols (most used, most used + shift, least used)
  * ,-----------------------------------------------------------------------------------.
- * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
+ * | ~`   | 1!   | 2@   | 3#   | 4$   | 5%   | 6^   | 7&   | 8*   | 9(   | 0)   |------|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |  |   |
+ * |      |      |      |      |      |      |      | _-   | =+   | [{(  | ]})  | \|/  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | | Home | End  |      |
+ * |------|      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+ * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_LOWER] = LAYOUT_planck_grid(
-    KC_TILD, KC_EXLM, KC_AT,   KC_UK_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,  
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
+[_SYMBOLS_MOST] = LAYOUT_planck_grid(
+    KC_TILD, KC_1,    KC_2,    KS_3_UK_HASH, KC_4,    KC_5,    KC_6,    KC_7,         KC_8,    KC_9,    KC_0,    _______,  
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KS_UNDS_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
+    _______, KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,  
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO
 ),
-
-/* Raise
- * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
- * `-----------------------------------------------------------------------------------'
- */
-[_RAISE] = LAYOUT_planck_grid(
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,  
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
+[_SYMBOLS_LEAST] = LAYOUT_planck_grid(
+    KC_GRV,  KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   _______,  
+		KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_LPRN, KC_RPRN, KC_SLSH,
+		_______, KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,  
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO
 ),
 
 /* Movement
@@ -179,11 +173,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#define ___         {0x00,0x00,0x00}
-#define __SPACE__   ___
-#define RGB_LOWER   {0x88,0x00,0x00}
-#define RGB_RAISE   {0x00,0x88,0x00}
-#define RGB_MOVE    {0x00,0x88,0x88}
+#define ___                {0x00,0x00,0x00}
+#define __SPACE__          ___
+#define RGB_SYMBOLS_LEAST  {0x88,0x00,0x00}
+#define RGB_SYMBOLS_MOST   {0x00,0x88,0x00}
+#define RGB_MOVE           {0x00,0x88,0x88}
 
 #define RGB_WINDOW  {0x00,0x88,0x88}
 #define RGB_MOUSE   {0xFF,0x44,0x00}
@@ -191,24 +185,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	[_QWERTY] = {
-		___,      ___, ___, ___, ___,       ___,  ___, ___,       ___, ___, ___, ___,
-		___,      ___, ___, ___, ___,       ___,  ___, ___,       ___, ___, ___, ___,
-		___,      ___, ___, ___, ___,       ___,  ___, ___,       ___, ___, ___, ___,
-		RGB_MOVE, ___, ___, ___, RGB_LOWER, __SPACE__, RGB_RAISE, ___, ___, ___, ___ 
+		___,      ___, ___, ___, ___,               ___,  ___, ___,              ___, ___, ___, ___,
+		___,      ___, ___, ___, ___,               ___,  ___, ___,              ___, ___, ___, ___,
+		___,      ___, ___, ___, ___,               ___,  ___, ___,              ___, ___, ___, ___,
+		RGB_MOVE, ___, ___, ___, RGB_SYMBOLS_LEAST, __SPACE__, RGB_SYMBOLS_MOST, ___, ___, ___, ___ 
 	},
 
-	[_LOWER] = {
-		___, ___, ___, ___, ___,       ___,  ___, ___, ___, ___, ___, ___,
-		___, ___, ___, ___, ___,       ___,  ___, ___, ___, ___, ___, ___,
-		___, ___, ___, ___, ___,       ___,  ___, ___, ___, ___, ___, ___,
-		___, ___, ___, ___, RGB_LOWER, __SPACE__, ___, ___, ___, ___, ___ 
+	[_SYMBOLS_LEAST] = {
+		___, ___, ___, ___, ___,               ___,  ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___,               ___,  ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, ___,               ___,  ___, ___, ___, ___, ___, ___,
+		___, ___, ___, ___, RGB_SYMBOLS_LEAST, __SPACE__, ___, ___, ___, ___, ___ 
 	},
 
-	[_RAISE] = {
-		___, ___, ___, ___, ___, ___,  ___, ___,       ___, ___, ___, ___,
-		___, ___, ___, ___, ___, ___,  ___, ___,       ___, ___, ___, ___,
-		___, ___, ___, ___, ___, ___,  ___, ___,       ___, ___, ___, ___,
-		___, ___, ___, ___, ___, __SPACE__, RGB_RAISE, ___, ___, ___, ___ 
+	[_SYMBOLS_MOST] = {
+		___, ___, ___, ___, ___, ___,  ___, ___,              ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___,  ___, ___,              ___, ___, ___, ___,
+		___, ___, ___, ___, ___, ___,  ___, ___,              ___, ___, ___, ___,
+		___, ___, ___, ___, ___, __SPACE__, RGB_SYMBOLS_MOST, ___, ___, ___, ___ 
 	},
 
 	[_ADJUST] = {
@@ -277,5 +271,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  return update_tri_layer_state(state, _SYMBOLS_LEAST, _SYMBOLS_MOST, _ADJUST);
 }
