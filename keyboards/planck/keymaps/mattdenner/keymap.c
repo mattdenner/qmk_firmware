@@ -62,9 +62,10 @@ enum planck_keycodes {
 #define LAYER_SYMBOLS_LEAST        MO(_SYMBOLS_LEAST)
 #define LAYER_SYMBOLS_MOST         MO(_SYMBOLS_MOST)
 #define LAYER_SYMBOLS_MOST_SHIFTED MO(_SYMBOLS_MOST_SHIFTED)
-#define LAYER_MOVEMENT             TG(_MOVEMENT)
-#define LAYER_MOUSE                TG(_MOUSE)
-#define LAYER_WINDOWS							 TG(_WINDOWS)
+#define LAYER_MOVEMENT             TO(_MOVEMENT)
+#define LAYER_MOUSE                TO(_MOUSE)
+#define LAYER_WINDOWS							 TO(_WINDOWS)
+#define LAYER_DEFAULT              TO(_QWERTY)
 
 #define DESKTOP_LEFT       LCTL(KC_LEFT)
 #define DESKTOP_RIGHT      LCTL(KC_RIGHT)
@@ -138,22 +139,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOVEMENT] = LAYOUT_planck_grid(
-    LAYER_MOVEMENT, TMUX_1,      TMUX_2,        TMUX_3,      TMUX_RENAME,  KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO,  
-    KC_NO,          KC_NO,       TMUX_SPLIT,    KC_NO,       KC_NO,        KC_NO, TMUX_LEFT, TMUX_DOWN, TMUX_UP, TMUX_RIGHT, KC_NO, KC_NO,  
-    KC_LSFT,        KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, KC_NO,   KC_NO,      KC_NO, KC_NO,  
-    _______,        LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO
+    LAYER_DEFAULT, TMUX_1,      TMUX_2,        TMUX_3,      TMUX_RENAME,  KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO,  
+    KC_NO,         KC_NO,       TMUX_SPLIT,    KC_NO,       KC_NO,        KC_NO, TMUX_LEFT, TMUX_DOWN, TMUX_UP, TMUX_RIGHT, KC_NO, KC_NO,  
+    KC_LSFT,       KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, KC_NO,   KC_NO,      KC_NO, KC_NO,  
+    LAYER_DEFAULT, LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO
 ),
 [_MOUSE] = LAYOUT_planck_grid(
-    KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
-    KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_MS_BTN2, KC_NO,  
-    KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
-    KC_NO, _______, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
+    LAYER_DEFAULT,  KC_NO,         KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
+    KC_NO,          KC_NO,         KC_NO, KC_NO, KC_NO, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_MS_BTN2, KC_NO,  
+    KC_NO,          KC_NO,         KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
+    LAYER_MOVEMENT, LAYER_DEFAULT, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
 ),
 [_WINDOWS] = LAYOUT_planck_grid(
-    KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        DESKTOP_TALL, KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
-    KC_NO, KC_NO, KC_NO,   KC_NO, DESKTOP_FULL, KC_NO,        WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
-    KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
-    KC_NO, KC_NO, _______, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
+    LAYER_DEFAULT,  KC_NO, KC_NO,         KC_NO, KC_NO,        DESKTOP_TALL, KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
+    KC_NO,          KC_NO, KC_NO,         KC_NO, DESKTOP_FULL, KC_NO,        WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
+    KC_NO,          KC_NO, KC_NO,         KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
+    LAYER_MOVEMENT, KC_NO, LAYER_DEFAULT, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
 ),
 
 /* Adjust (Lower + Raise)
@@ -180,6 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define ___                {0x00,0x00,0x00}
 #define __SPACE__          ___
 
+#define RGB_DEFAULT {0xFF,0xFF,0xFF}
 #define RGB_WINDOW  {0x00,0x88,0x88}
 #define RGB_MOUSE   {0xFF,0x44,0x00}
 #define RGB_TMUX    {0x88,0x88,0x00}
@@ -226,24 +228,22 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	},
 
 	[_MOVEMENT] = {
-		RGB_MOVE, RGB_TMUX,  RGB_TMUX,   RGB_TMUX, RGB_TMUX, ___, ___,      ___,      ___,      ___,      ___, ___,
-		___,      ___,       RGB_TMUX,   ___,      ___,      ___, RGB_TMUX, RGB_TMUX, RGB_TMUX, RGB_TMUX, ___, ___,
-		RGB_TMUX, ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, ___,      ___,      ___, ___,
-		RGB_MOVE, RGB_MOUSE, RGB_WINDOW, ___,      ___,      __SPACE__,     ___,      ___,      ___,      ___, ___
+		RGB_DEFAULT, RGB_TMUX,  RGB_TMUX,   RGB_TMUX, RGB_TMUX, ___, ___,      ___,      ___,      ___,      ___, ___,
+		___,         ___,       RGB_TMUX,   ___,      ___,      ___, RGB_TMUX, RGB_TMUX, RGB_TMUX, RGB_TMUX, ___, ___,
+		RGB_TMUX,    ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, ___,      ___,      ___, ___,
+		RGB_DEFAULT, RGB_MOUSE, RGB_WINDOW, ___,      ___,      __SPACE__,     ___,      ___,      ___,      ___, ___
 	},
-
 	[_MOUSE] = {
-		___, ___,       ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
-		___, ___,       ___, ___, ___, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, ___,
-		___, ___,       ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
-		___, RGB_MOUSE, ___, ___, ___, __SPACE__,            ___,       ___,       ___,       ___,       ___ 
+		RGB_DEFAULT, ___,         ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
+		___,         ___,         ___, ___, ___, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, ___,
+		___,         ___,         ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
+		RGB_MOVE,    RGB_DEFAULT, ___, ___, ___, __SPACE__,            ___,       ___,       ___,       ___,       ___ 
 	},
-
 	[_WINDOWS] = {
-		___, ___, ___, ___, ___,        RGB_WINDOW, ___,        ___,        ___,        ___,        ___, ___,
-		___, ___, ___, ___, RGB_WINDOW, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
-		___, ___, ___, ___, ___,        ___,        ___,        ___,        ___,        ___,        ___, ___,
-		___, ___, ___, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
+		RGB_DEFAULT, ___, ___,         ___, ___,        RGB_WINDOW, ___,        ___,        ___,        ___,        ___, ___,
+		___,         ___, ___,         ___, RGB_WINDOW, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
+		___,         ___, ___,         ___, ___,        ___,        ___,        ___,        ___,        ___,        ___, ___,
+		RGB_MOVE,    ___,	RGB_DEFAULT, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
 	},
 };
 
