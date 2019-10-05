@@ -252,7 +252,7 @@ void rgb_matrix_indicators_user(void) {
 #define tmux_command(c,t)   if(record->event.pressed) {SEND_STRING(TMUX_PREFIX c); tmux_toggle(t); return false;}
 #define tmux_command_with_shift(c,C,t) if(record->event.pressed) {SEND_STRING( (((get_mods() & MOD_BIT(KC_LSFT)) ? (TMUX_PREFIX C) : (TMUX_PREFIX c))) ); tmux_toggle(t); return false;}
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user_in_movement(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 		case TMUX_CREATE: tmux_command("c",TRUE); break;
 		case TMUX_SPLIT:  tmux_command("-",TRUE); break;
@@ -268,6 +268,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		case TMUX_DOWN:   tmux_command_with_shift("j","J",FALSE); break;
   }
 	return true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	switch (get_highest_layer(layer_state)) {
+		case _MOVEMENT: return process_record_user_in_movement(keycode, record); break;
+		default:        return true;
+	}
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
