@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Symbols (least used, most used, most used + shift)
  * ,-----------------------------------------------------------------------------------.
- * |  ~`  |  1!  |  2@  |  3#  |  4$  |  5%  |  6^  |  7&  |  8*  |  9(  |  0)  |------|
+ * |  ~`  |  1!  |  2@  | ^3   | #4   | $5%  |  6   |  7&  |  8*  |  9(  |  0)  |------|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |  _-  |  =+  |      |      |     |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO
 ),
 [_SYMBOLS_MOST_SHIFTED] = LAYOUT_planck_grid(
-    KC_GRV,                     LSFT(KC_1),    LSFT(KC_2),    KC_UK_HASH, LSFT(KC_4),    LSFT(KC_5),    LSFT(KC_6),    LSFT(KC_7),    LSFT(KC_8),    KC_NO,         KC_NO,         _______,  
+    KC_GRV,                     LSFT(KC_1),    LSFT(KC_2),    KC_NO,      KC_NO,         LSFT(KC_5),    KC_NO,         LSFT(KC_7),    LSFT(KC_8),    KC_NO,         KC_NO,         _______,  
     _______,                    _______,       _______,       _______,    _______,       _______,       _______,       _______,       KC_PLUS,       _______,       _______,       _______,
     _______,                    _______,       _______,       _______,    _______,       _______,       _______,       _______,       KC_LBRC,       KC_RBRC,       _______,       _______,  
     _______,                    _______,       _______,       _______,    _______,       _______,       _______,       _______,       _______,       _______,       _______,       _______
@@ -215,7 +215,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 		___,        ___,         ___,         ___,         ___,             __SPACE__,            RGB_MOST,    ___,         ___,         ___,         ___ 
 	},
 	[_SYMBOLS_MOST_SHIFTED] = {
-		RGB_MOST_S, RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  ___,
+		RGB_MOST_S, RGB_MOST_S,  RGB_MOST_S,  ___,         ___,         RGB_MOST_S,  ___,         RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  RGB_MOST_S,  ___,
 		___,        ___,         ___,         ___,         ___,         ___,         ___,         ___,         RGB_MOST_S,  ___,         ___,         ___,
 		RGB_MOST_S, ___,         ___,         ___,         ___,         ___,         ___,         ___,         RGB_MOST_S,  RGB_MOST_S,  ___,         ___,
 		___,        ___,         ___,         ___,         ___,             __SPACE__,            RGB_MOST,    ___,         ___,         ___,         ___ 
