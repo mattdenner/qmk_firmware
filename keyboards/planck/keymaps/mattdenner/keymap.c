@@ -27,7 +27,7 @@ enum planck_layers {
 	_SYMBOLS_LEAST,
 
   _ADJUST,
-	_MOVEMENT,
+	_TMUX,
 	_MOUSE,
 	_WINDOWS,
 };
@@ -63,7 +63,7 @@ enum planck_keycodes {
 #define LAYER_SYMBOLS_LEAST        MO(_SYMBOLS_LEAST)
 #define LAYER_SYMBOLS_MOST         MO(_SYMBOLS_MOST)
 #define LAYER_SYMBOLS_MOST_SHIFTED MO(_SYMBOLS_MOST_SHIFTED)
-#define LAYER_MOVEMENT             TO(_MOVEMENT)
+#define LAYER_TMUX                 TO(_TMUX)
 #define LAYER_MOUSE                TO(_MOUSE)
 #define LAYER_WINDOWS							 TO(_WINDOWS)
 #define LAYER_DEFAULT              TO(_QWERTY)
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,         KC_Q,    KC_W,    KC_E,    KC_R,                KC_T,    KC_Y,    KC_U,               KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,         KC_A,    KC_S,    KC_D,    KC_F,                KC_G,    KC_H,    KC_J,               KC_K,    KC_L,    KC_SCLN, KC_ENT,
     KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,                KC_B,    KC_N,    KC_M,               KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
-    LAYER_MOVEMENT, KC_LCTL, KC_LALT, KC_LGUI, LAYER_SYMBOLS_LEAST, KC_SPC,  KC_SPC,  LAYER_SYMBOLS_MOST, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    LAYER_TMUX,     KC_LCTL, KC_LALT, KC_LGUI, LAYER_SYMBOLS_LEAST, KC_SPC,  KC_SPC,  LAYER_SYMBOLS_MOST, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Symbols (least used, most used, most used + shift)
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |LEFTD |      |      |RIGHTD|
  * `-----------------------------------------------------------------------------------'
  */
-[_MOVEMENT] = LAYOUT_planck_grid(
+[_TMUX] = LAYOUT_planck_grid(
     LAYER_DEFAULT, TMUX_1,      TMUX_2,        TMUX_3,      TMUX_RENAME,  KC_NO, KC_NO,     KC_NO,     KC_NO,   KC_NO,      KC_NO, KC_NO,  
     KC_NO,         KC_NO,       TMUX_SPLIT,    KC_NO,       TMUX_FULL,    KC_NO, TMUX_LEFT, TMUX_DOWN, TMUX_UP, TMUX_RIGHT, KC_NO, KC_NO,  
     KC_LSFT,       KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, KC_NO,   KC_NO,      KC_NO, KC_NO,  
@@ -149,13 +149,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LAYER_DEFAULT,  KC_NO,         KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
     KC_NO,          KC_NO,         KC_NO, KC_NO, KC_NO, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_MS_BTN2, KC_NO,  
     KC_NO,          KC_NO,         KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
-    LAYER_MOVEMENT, LAYER_DEFAULT, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
+    LAYER_TMUX,     LAYER_DEFAULT, KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO
 ),
 [_WINDOWS] = LAYOUT_planck_grid(
     LAYER_DEFAULT,  KC_NO, KC_NO,         KC_NO, KC_NO,        DESKTOP_TALL, KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
     KC_NO,          KC_NO, KC_NO,         KC_NO, DESKTOP_FULL, KC_NO,        WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
     KC_NO,          KC_NO, KC_NO,         KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
-    LAYER_MOVEMENT, KC_NO, LAYER_DEFAULT, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
+    LAYER_TMUX,     KC_NO, LAYER_DEFAULT, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
 ),
 
 /* Adjust (Lower + Raise)
@@ -187,7 +187,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define RGB_MOUSE   {0xFF,0x44,0x00}
 #define RGB_TMUX    {0x88,0x88,0x00}
 
-#define RGB_MOVE    {0x00,0x00,0xFF}
 #define RGB_MOST    {0x00,0xFF,0x00}
 #define RGB_LEAST   {0xFF,0x00,0x00}
 #define RGB_MOST_S  {0x00,0xFF,0xFF}
@@ -199,7 +198,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 		___,      ___, ___, ___, ___,       ___,  ___, ___,      ___, ___, ___, ___,
 		___,      ___, ___, ___, ___,       ___,  ___, ___,      ___, ___, ___, ___,
 		___,      ___, ___, ___, ___,       ___,  ___, ___,      ___, ___, ___, ___,
-		RGB_MOVE, ___, ___, ___, RGB_LEAST, __SPACE__, RGB_MOST, ___, ___, ___, ___ 
+		RGB_TMUX, ___, ___, ___, RGB_LEAST, __SPACE__, RGB_MOST, ___, ___, ___, ___ 
 	},
 
 	[_SYMBOLS_LEAST] = {
@@ -228,7 +227,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 		___, ___, ___, ___, ___, __SPACE__, ___, ___, ___, ___, ___ 
 	},
 
-	[_MOVEMENT] = {
+	[_TMUX] = {
 		RGB_DEFAULT, RGB_TMUX,  RGB_TMUX,   RGB_TMUX, RGB_TMUX, ___, ___,      ___,      ___,      ___,      ___, ___,
 		___,         ___,       RGB_TMUX,   ___,      RGB_TMUX, ___, RGB_TMUX, RGB_TMUX, RGB_TMUX, RGB_TMUX, ___, ___,
 		RGB_TMUX,    ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, ___,      ___,      ___, ___,
@@ -238,13 +237,13 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 		RGB_DEFAULT, ___,         ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
 		___,         ___,         ___, ___, ___, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, RGB_MOUSE, ___,
 		___,         ___,         ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
-		RGB_MOVE,    RGB_DEFAULT, ___, ___, ___, __SPACE__,            ___,       ___,       ___,       ___,       ___ 
+		RGB_TMUX,    RGB_DEFAULT, ___, ___, ___, __SPACE__,            ___,       ___,       ___,       ___,       ___ 
 	},
 	[_WINDOWS] = {
 		RGB_DEFAULT, ___, ___,         ___, ___,        RGB_WINDOW, ___,        ___,        ___,        ___,        ___, ___,
 		___,         ___, ___,         ___, RGB_WINDOW, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
 		___,         ___, ___,         ___, ___,        ___,        ___,        ___,        ___,        ___,        ___, ___,
-		RGB_MOVE,    ___,	RGB_DEFAULT, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
+		RGB_TMUX,    ___,	RGB_DEFAULT, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
 	},
 };
 
@@ -269,7 +268,7 @@ void rgb_matrix_indicators_user(void) {
 }
 
 #define TMUX_PREFIX SS_LCTRL("a")
-#define tmux_toggle(t) if(t){layer_off(_MOVEMENT);}
+#define tmux_toggle(t) if(t){layer_off(_TMUX);}
 #define tmux_command(c,t)   if(record->event.pressed) {SEND_STRING(TMUX_PREFIX c); tmux_toggle(t); return false;}
 #define tmux_command_with_shift(c,C,t) if(record->event.pressed) {SEND_STRING( (((get_mods() & MOD_BIT(KC_LSFT)) ? (TMUX_PREFIX C) : (TMUX_PREFIX c))) ); tmux_toggle(t); return false;}
 
@@ -294,8 +293,8 @@ bool process_record_user_in_movement(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (get_highest_layer(layer_state)) {
-		case _MOVEMENT: return process_record_user_in_movement(keycode, record); break;
-		default:        return true;
+		case _TMUX: return process_record_user_in_movement(keycode, record); break;
+		default:    return true;
 	}
 }
 
