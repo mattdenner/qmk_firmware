@@ -179,11 +179,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#define ___                {0x00,0x00,0x00}
-#define __SPACE__          ___
+#define ___         {0x00,0x00,0x00}
+#define __SPACE__   ___
 
 #define RGB_DEFAULT {0xFF,0xFF,0xFF}
-#define RGB_WINDOW  {0x00,0x88,0x88}
+#define RGB_WINDOW  {0x00,0x00,0xFF}
 #define RGB_MOUSE   {0xFF,0x44,0x00}
 #define RGB_TMUX    {0x88,0x88,0x00}
 
