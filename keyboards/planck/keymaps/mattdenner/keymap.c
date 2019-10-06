@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,                    _______,       _______,       _______,    _______,       _______,       _______,       _______,       _______,       _______,       _______,       _______
 ),
 [_SYMBOLS_LEAST] = LAYOUT_planck_grid(
-    KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         _______,  
+    KC_NO,                      KC_NO,         KC_NO,         LSFT(KC_6), KC_UK_HASH,    LSFT(KC_4),    KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         _______,  
 		KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_MINS,       KC_NO,         KC_LPRN,       KC_RPRN,       KC_NO,
 		_______,                    KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_BSLS,       KC_NO,  
     KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO
@@ -202,7 +202,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
 	},
 
 	[_SYMBOLS_LEAST] = {
-		___,        ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,
+		___,        ___,         ___,         RGB_LEAST,   RGB_LEAST,   RGB_LEAST,   ___,         ___,         ___,         ___,         ___,         ___,
 		___,        ___,         ___,         ___,         ___,         ___,         ___,         RGB_LEAST,   ___,         RGB_LEAST,   RGB_LEAST,   ___,
 		___,        ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         ___,         RGB_LEAST,   ___,
 		___,        ___,         ___,         ___,         RGB_LEAST,       __SPACE__,            ___,         ___,         ___,         ___,         ___ 
