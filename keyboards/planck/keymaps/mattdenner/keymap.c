@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOLS_MOST] = LAYOUT_planck_grid(
     KC_NO,                      KC_1,          KC_2,          KC_3,       KC_4,          KC_5,          KC_6,          KC_7,          KC_8,          KC_9,          KC_0,          _______,  
     KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_UNDS,       KC_EQL,        KC_NO,         KC_NO,         _______,
-    LAYER_SYMBOLS_MOST_SHIFTED, KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         LSFT(KC_LBRC), LSFT(KC_RBRC), LSFT(KC_BSLS), KC_TILD,  
+    LAYER_SYMBOLS_MOST_SHIFTED, KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         LSFT(KC_LBRC), LSFT(KC_RBRC), LSFT(KC_BSLS), KC_GRV,  
     KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO
 ),
 [_SYMBOLS_MOST_SHIFTED] = LAYOUT_planck_grid(
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOLS_LEAST] = LAYOUT_planck_grid(
     KC_NO,                      KC_NO,         KC_NO,         LSFT(KC_6), KC_UK_HASH,    LSFT(KC_4),    KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         _______,  
 		KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_MINS,       KC_NO,         KC_NO,         KC_NO,         KC_NO,
-		_______,                    KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_LPRN,       KC_RPRN,       KC_BSLS,       KC_GRV,  
+		_______,                    KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_LPRN,       KC_RPRN,       KC_BSLS,       KC_TILD,  
     KC_NO,                      KC_NO,         KC_NO,         KC_NO,      KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO,         KC_NO
 ),
 
