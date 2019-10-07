@@ -50,10 +50,6 @@ enum planck_keycodes {
 	TMUX_2,
 	TMUX_3,
 	TMUX_4,
-
-	KC_3_UK_HASH,
-	KC_UNDS_MINS,
-	KC_TILD_GRV,
 };
 
 
