@@ -41,6 +41,7 @@ enum planck_keycodes {
   TMUX_FULL,
   TMUX_MOVE,
   TMUX_RENAME,
+  TMUX_SCROLL,
 
   TMUX_LEFT,
   TMUX_RIGHT,
@@ -138,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_TMUX] = LAYOUT_planck_grid(
       LAYER_DEFAULT, TMUX_1,      TMUX_2,        TMUX_3,      TMUX_RENAME,  KC_NO, KC_NO,     KC_NO,     KC_NO,        KC_NO,      KC_NO, KC_NO,  
       KC_NO,         KC_NO,       TMUX_SPLIT,    KC_NO,       TMUX_FULL,    KC_NO, TMUX_LEFT, TMUX_DOWN, TMUX_UP,      TMUX_RIGHT, KC_NO, KC_NO,  
-      KC_LSFT,       KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, KC_NO,        KC_NO,      KC_NO, KC_NO,  
+      KC_LSFT,       KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, TMUX_SCROLL,  KC_NO,      KC_NO, KC_NO,  
       LAYER_DEFAULT, LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     DESKTOP_LEFT, KC_NO,      KC_NO, DESKTOP_RIGHT
       ),
   [_MOUSE] = LAYOUT_planck_grid(
@@ -226,7 +227,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
   [_TMUX] = {
     RGB_DEFAULT, RGB_TMUX,  RGB_TMUX,   RGB_TMUX, RGB_TMUX, ___, ___,      ___,      ___,        ___,      ___, ___,
     ___,         ___,       RGB_TMUX,   ___,      RGB_TMUX, ___, RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_TMUX, ___, ___,
-    RGB_TMUX,    ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, ___,        ___,      ___, ___,
+    RGB_TMUX,    ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, RGB_TMUX,   ___,      ___, ___,
     RGB_DEFAULT, RGB_MOUSE, RGB_WINDOW, ___,      ___,      __SPACE__,     ___,      RGB_WINDOW, ___,      ___, RGB_WINDOW
   },
   [_MOUSE] = {
@@ -270,6 +271,7 @@ void rgb_matrix_indicators_user(void) {
 
 bool process_record_user_in_movement(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case TMUX_SCROLL: tmux_command("[",TRUE); break;
     case TMUX_CREATE: tmux_command("c",TRUE); break;
     case TMUX_SPLIT:  tmux_command("-",TRUE); break;
     case TMUX_VSPLIT: tmux_command("v",TRUE); break;
