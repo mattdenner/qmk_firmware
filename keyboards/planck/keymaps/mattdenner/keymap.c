@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LAYER_DEFAULT, TMUX_1,      TMUX_2,        TMUX_3,      TMUX_RENAME,  KC_NO, KC_NO,     KC_NO,     KC_NO,        KC_NO,      KC_NO, KC_NO,  
       KC_NO,         KC_NO,       TMUX_SPLIT,    KC_NO,       TMUX_FULL,    KC_NO, TMUX_LEFT, TMUX_DOWN, TMUX_UP,      TMUX_RIGHT, KC_NO, KC_NO,  
       KC_LSFT,       KC_NO,       KC_NO,         TMUX_CREATE, TMUX_VSPLIT,  KC_NO, KC_NO,     TMUX_MOVE, TMUX_SCROLL,  KC_NO,      KC_NO, KC_NO,  
-      LAYER_DEFAULT, LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     DESKTOP_LEFT, KC_NO,      KC_NO, DESKTOP_RIGHT
+      LAYER_DEFAULT, LAYER_MOUSE, LAYER_WINDOWS, KC_NO,       KC_NO,        KC_NO, KC_NO,     KC_NO,     KC_NO,        KC_NO,      KC_NO, KC_NO
       ),
   [_MOUSE] = LAYOUT_planck_grid(
       LAYER_DEFAULT,  KC_NO,         KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_NO,      KC_NO,  
@@ -152,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LAYER_DEFAULT,  KC_NO, KC_NO,         KC_NO, KC_NO,        DESKTOP_TALL, KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
       KC_NO,          KC_NO, KC_NO,         KC_NO, DESKTOP_FULL, KC_NO,        WINDOW_MOVE_LEFT, WINDOW_FOCUS_LEFT, WINDOW_FOCUS_RIGHT, WINDOW_MOVE_RIGHT, KC_NO, KC_NO,  
       KC_NO,          KC_NO, KC_NO,         KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO,  
-      LAYER_TMUX,     KC_NO, LAYER_DEFAULT, KC_NO, KC_NO,        KC_NO,        DESKTOP_CYCLE,    DESKTOP_CYCLE,     DESKTOP_LEFT,       KC_NO,             KC_NO, DESKTOP_RIGHT
+      LAYER_TMUX,     KC_NO, LAYER_DEFAULT, KC_NO, KC_NO,        KC_NO,        KC_NO,            KC_NO,             KC_NO,              KC_NO,             KC_NO, KC_NO
       ),
 
   /* Adjust (Lower + Raise)
@@ -228,7 +228,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
     RGB_DEFAULT, RGB_TMUX,  RGB_TMUX,   RGB_TMUX, RGB_TMUX, ___, ___,      ___,      ___,        ___,      ___, ___,
     ___,         ___,       RGB_TMUX,   ___,      RGB_TMUX, ___, RGB_TMUX, RGB_TMUX, RGB_TMUX,   RGB_TMUX, ___, ___,
     RGB_TMUX,    ___,       ___,        RGB_TMUX, RGB_TMUX, ___, ___,      RGB_TMUX, RGB_TMUX,   ___,      ___, ___,
-    RGB_DEFAULT, RGB_MOUSE, RGB_WINDOW, ___,      ___,      __SPACE__,     ___,      RGB_WINDOW, ___,      ___, RGB_WINDOW
+    RGB_DEFAULT, RGB_MOUSE, RGB_WINDOW, ___,      ___,      __SPACE__,     ___,      ___,        ___,      ___, ___
   },
   [_MOUSE] = {
     RGB_DEFAULT, ___,         ___, ___, ___, ___,       ___,       ___,       ___,       ___,       ___,       ___,
@@ -240,7 +240,7 @@ const uint8_t PROGMEM keymaps_colors[][DRIVER_LED_TOTAL][3] = {
     RGB_DEFAULT, ___, ___,         ___, ___,        RGB_WINDOW, ___,        ___,        ___,        ___,        ___, ___,
     ___,         ___, ___,         ___, RGB_WINDOW, ___,        RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, RGB_WINDOW, ___, ___,
     ___,         ___, ___,         ___, ___,        ___,        ___,        ___,        ___,        ___,        ___, ___,
-    RGB_TMUX,    ___,	RGB_DEFAULT, ___, ___,           RGB_WINDOW,          ___,        RGB_WINDOW, ___,        ___, RGB_WINDOW 
+    RGB_TMUX,    ___,	RGB_DEFAULT, ___, ___,           ___,                 ___,        ___,        ___,        ___, ___ 
   },
 };
 
