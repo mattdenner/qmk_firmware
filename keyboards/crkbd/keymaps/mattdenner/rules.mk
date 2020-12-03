@@ -1,0 +1,3 @@
+BOOTLOADER = qmk-dfu
+OLED_DRIVER_ENABLE  = yes
+RGBLIGHT_ENABLE = yes
